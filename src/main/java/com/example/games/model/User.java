@@ -14,9 +14,8 @@ public class User {
     public User() {
     }
 
-    // Parameterized constructor
-    public User(Long id, String email) {
-        this.id = id;
+    // Parameterized constructor TODO: add parameters for password field so that new users can be added with their passwords
+    public User(String email) {
         this.email = email;
     }
 
@@ -33,6 +32,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     // toString method
     @Override
