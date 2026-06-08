@@ -36,7 +36,7 @@ public class ProductService {
         // return products;
         
 
-        return productRepository.findAllWithGame();
+        return productRepository.findAllWithGameOnly();
     }
 
     public Optional<Product> getProductById(Long id)

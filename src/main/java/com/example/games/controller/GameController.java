@@ -17,11 +17,13 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @GetMapping("/games")
-    public List<Game> getAllGames() {
-        //return gameService.getAllGames();
-        return gameService.getAllGamesWithConsole();
-    }
+    //NOTE: I am instead moving games selection routes to products, since games are just products that are only games
+
+    // @GetMapping("/games")
+    // public List<Game> getAllGames() {
+    //     //return gameService.getAllGames();
+    //     return gameService.getAllGamesWithConsole();
+    // }
     
     
 }

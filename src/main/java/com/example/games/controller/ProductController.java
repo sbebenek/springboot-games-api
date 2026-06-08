@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
+
 @RestController
 public class ProductController {
 
@@ -22,9 +23,15 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<Product> getAllProducts() {
-        //return productService.getAllProducts();
+        return productService.getAllProducts();
+    }
+
+    @GetMapping("/products/games")
+    public List<Product> getAllProductsThatAreGames() {
         return productService.getAllProductsWithGames();
     }
+
+    
     
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id)

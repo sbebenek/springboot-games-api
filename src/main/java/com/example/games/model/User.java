@@ -10,6 +10,8 @@ public class User {
     private Long id;
     private String email;
 
+    //TODO: add authentication
+
     //Default construnctor
     public User() {
     }

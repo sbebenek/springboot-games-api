@@ -13,4 +13,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //example of added repository query - this is not in the default CRUD stuff that comes with JpaRepository so we had to add it
     @Query("SELECT p FROM Product p LEFT JOIN FETCH p.game") 
     List<Product> findAllWithGame();
+
+    @Query("SELECT p FROM Product p INNER JOIN FETCH p.game") 
+    List<Product> findAllWithGameOnly();
+
 }
