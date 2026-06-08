@@ -3,27 +3,31 @@ package com.example.games.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="games")
 public class Game {
 
-    //FIXME: all these columns are wrong, this is actually the columns for the 'products' table and needs to be fixed
     //TODO: look up differences between class and interface and whatever the third one is if there is a third one
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "title")
-    private String title;
 
-    //TODO: product type hasMany relationship
+    @OneToOne
+    @JoinColumn(name="product_id", unique=true)
+    @JsonBackReference // TODO: I don't really understand this
+    private Product product; //FIXME: I'm not getting the game name because the name is in products - I need to find out how to get the product name if I'm fetching all games
 
-    @Column(name="release_date", nullable = true) // apparantly nullable is true by default, I'm just doing it for learning and readability
-    private LocalDate releaseDate;
-    @Column(nullable = true)
-    private BigDecimal price; // Better than Float for prices apparantly
+    @ManyToOne
+    @JoinColumn(name="console_id")
+    @JsonManagedReference
+    private Console console;
 
     //Default constructor 
     public Game() 
@@ -32,11 +36,9 @@ public class Game {
     }
 
     //Parameterized constructor 
-    public Game(String title, LocalDate releaseDate, BigDecimal price)
+    public Game(Product product) 
     {
-        this.title = title;
-        this.releaseDate = releaseDate;
-        this.price = price;
+        this.product = product;
     } 
 
     // Getters & Setters
@@ -45,46 +47,38 @@ public class Game {
         return this.id;
     }
 
-    public String getTitle()
+    public Product getProduct()
     {
-        return this.title;
+        return this.product;
     }
 
-    public void setTitle(String title)
+    public void setProduct(Product product)
     {
-        this.title = title;
+        this.product = product;
     }
 
-    public LocalDate getReleaseDate()
+    public Console getConsole()
     {
-        return this.releaseDate;
+        return this.console;
     }
 
-    public void setReleaseDate(LocalDate releaseDate)
+    public void setConsole(Console console)
     {
-        this.releaseDate = releaseDate;
+        this.console = console;
     }
 
-    public BigDecimal getPrice()
-    {
-        return this.price;
-    }
+    
 
-    public void setPrice(BigDecimal price)
-    {
-        this.price = price;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Game{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", releaseDate=" + releaseDate +
-            ", price=" + price +
-            '}';
-    }
+    // @Override
+    // public String toString()
+    // {
+    //     return "Game{" +
+    //         "id=" + id +
+    //         ", title='" + title + '\'' +
+    //         ", releaseDate=" + releaseDate +
+    //         ", price=" + price +
+    //         '}';
+    // }
 
     
 }

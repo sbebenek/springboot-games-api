@@ -25,6 +25,20 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public List<Product> getAllProductsWithGames()
+    {
+        // List<Product> products = productRepository.findAllWithGame();
+        // for (Product p : products) {
+        //     System.out.println("Product: " + p.getTitle());
+        //     System.out.println("Game: " + p.getGame());
+        // }
+
+        // return products;
+        
+
+        return productRepository.findAllWithGame();
+    }
+
     public Optional<Product> getProductById(Long id)
     {
         return productRepository.findById(id);

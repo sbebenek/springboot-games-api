@@ -19,7 +19,8 @@ public class GameController {
 
     @GetMapping("/games")
     public List<Game> getAllGames() {
-        return gameService.getAllGames();
+        //return gameService.getAllGames();
+        return gameService.getAllGamesWithConsole();
     }
     
     

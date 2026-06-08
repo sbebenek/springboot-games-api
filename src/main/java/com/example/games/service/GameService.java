@@ -23,5 +23,10 @@ public class GameService {
     {
         return gameRepository.findAll();
     }
+
+    public List<Game> getAllGamesWithConsole()
+    {
+        return gameRepository.findAllWithConsole();
+    }
     
 }
