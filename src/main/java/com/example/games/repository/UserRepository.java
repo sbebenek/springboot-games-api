@@ -5,6 +5,8 @@ package com.example.games.repository;
 
 import com.example.games.model.User;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
     //Add any other extra CRUD functions here if needed
+
+    Optional<User> findByEmail(String email);
 }

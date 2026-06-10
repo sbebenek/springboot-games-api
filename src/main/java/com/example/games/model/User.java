@@ -8,7 +8,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     //TODO: add authentication
 
@@ -16,9 +20,10 @@ public class User {
     public User() {
     }
 
-    // Parameterized constructor TODO: add parameters for password field so that new users can be added with their passwords
-    public User(String email) {
+    // Parameterized constructor
+    public User(String email, String password) {
         this.email = email;
+        this.password = password;
     }
 
     // Getters and Setters
@@ -33,6 +38,16 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword()
+    {
+        return this.password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
     }
 
 
